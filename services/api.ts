@@ -4,13 +4,13 @@ export const OMDB_CONFIG = {
   };
   
   export const fetchMovies = async ({ query }: { query: string }) => {
-    const popularQuery = 'Avengers'; // Simulated popular
+    const popularQuery = 'avengers'; // Simulated popular
     const totalPages = 5;
     const allMovies: any[] = [];
   
     for (let page = 1; page <= totalPages; page++) {
       const endpoint = query
-        ? `${OMDB_CONFIG.BASE_URL}?apikey=${OMDB_CONFIG.API_KEY}&t=${encodeURIComponent(query)}`
+        ? `${OMDB_CONFIG.BASE_URL}?apikey=${OMDB_CONFIG.API_KEY}&s=${encodeURIComponent(query)}&${page}`
         : `${OMDB_CONFIG.BASE_URL}?apikey=${OMDB_CONFIG.API_KEY}&s=${popularQuery}&page=${page}`;
   
       const response = await fetch(endpoint);
@@ -21,7 +21,7 @@ export const OMDB_CONFIG = {
       const data = await response.json();
       if (data.Response === 'True') {
         if (query) {
-          allMovies.push(data.Search); // single movie result
+          allMovies.push(...data.Search); // single movie result
           console.log(data)
           break; // no need to loop more
           

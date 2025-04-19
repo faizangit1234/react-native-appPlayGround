@@ -52,7 +52,7 @@
 // app/search/index.tsx
 import { useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
-import { View, Text, FlatList, ActivityIndicator, TouchableOpacity } from "react-native";
+import { View, Text, FlatList, ActivityIndicator, TouchableOpacity, Image } from "react-native";
 import { fetchMovies } from "@/services/api";
 import { useRouter } from "expo-router";
 
@@ -89,11 +89,29 @@ export default function SearchResults() {
         renderItem={({ item }) => (
           <TouchableOpacity
             onPress={() => router.push(`/movies/${item.imdbID}/details`)}
-            className="mb-3"
+            className="mb-5 flex-row space-x-4"
           >
-            <Text className="text-white text-base">{item.Title}</Text>
+            <View className="w-24 h-36 bg-gray-800 rounded-md overflow-hidden">
+              {item.Poster !== "N/A" ? (
+                <Image
+                source={{ uri: item.Poster }}
+                style={{ width: 96, height: 144, borderRadius: 8 }}
+                resizeMode="cover"
+              />
+              ) : (
+                <View className="w-full h-full items-center justify-center">
+                  <Text className="text-white text-xs text-center px-1">No Image</Text>
+                </View>
+              )}
+            </View>
+            <View className="flex-1 justify-center">
+              <Text className="text-white text-lg font-bold">{item.Title}</Text>
+              <Text className="text-gray-300 text-sm mt-1">Year: {item.Year}</Text>
+              <Text className="text-gray-400 text-sm mt-1 capitalize">Type: {item.Type}</Text>
+            </View>
           </TouchableOpacity>
         )}
+        
       />
     </View>
   );

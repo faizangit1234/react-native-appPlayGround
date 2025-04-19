@@ -39,11 +39,12 @@ export default function Index() {
                 placeholder='search for the movies' />
 
               <>
-                <Text className="text-lg text-white font-bold mt-5 mb-3">Latest Movies</Text>
+                <Text className="text-lg text-white font-bold mt-5 mb-3">Latest Movies: </Text>
+                
 
                 <FlatList
                   data={movies}
-                  keyExtractor={(item) => item.imdbID}
+                  keyExtractor={(item) => item.imdbID }
                   renderItem={({ item }) => (
                     <View className="mb-4">
                       <Text className="text-white font-semibold">{item.Title}</Text>

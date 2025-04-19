@@ -68,12 +68,12 @@ const SearchBar = ({ placeholder, onPress }: Props) => {
         value={query}
         onChangeText={setQuery}
         onSubmitEditing={handleSearch}
-        className="flex-1 text-black"
+        className="flex-1 text-white"
         returnKeyType="search"
       />
       
       <TouchableOpacity onPress={handleSearch}>
-        <Text className="text-blue-500 font-semibold ml-2">Go</Text>
+        <Text className="text-white font-semibold ml-2">Go</Text>
       </TouchableOpacity>
     </View>
   );
