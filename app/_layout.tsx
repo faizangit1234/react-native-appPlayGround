@@ -13,5 +13,10 @@ export default function RootLayout() {
         headerShown: false,
         title: 'Tabs'
       }} />
+      <Stack.Screen name="movies/[id]/details"
+      options={{
+        headerShown: false,
+        title: 'Tabs'
+      }} />
   </Stack >;
 }
